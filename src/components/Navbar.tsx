@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-10 font-bold text-gray-500 dark:text-gray-400 text-sm tracking-widest">
           <Link to="/" className="hover:text-conecta-royal transition">Página Inicial</Link>
           <Link to="/produto" className="hover:text-conecta-royal transition">Produtos</Link>
-          <Link to="/categoria" className="hover:text-conecta-royal transition">Categorias</Link>
+          <Link to="/categorias" className="hover:text-conecta-royal transition">Categorias</Link>
         </div>
 
         <div className="flex items-center gap-4">

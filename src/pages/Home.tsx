@@ -26,7 +26,7 @@ const Home = () => {
                 Conhecer os produtos <ArrowRight size={20} />
               </Link>
               {/* Botão Secundário adaptativo */}
-              <Link to="/categoria" className="bg-transparent text-conecta-deep border-2 border-conecta-deep dark:text-white dark:border-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-50 dark:hover:bg-white/10 transition text-center">
+              <Link to="/categorias" className="bg-transparent text-conecta-deep border-2 border-conecta-deep dark:text-white dark:border-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-50 dark:hover:bg-white/10 transition text-center">
                 Explorar as categorias
               </Link>
             </div>
