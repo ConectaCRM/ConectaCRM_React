@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* 1. Importamos a fonte do Google (Regular, Medium, Bold e ExtraBold) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+
+@theme {
+  /* Nossas cores personalizadas */
+  --color-conecta-deep: #0033A0;
+  --color-conecta-royal: #0056D2;
+  --color-conecta-vibrant: #00A3FF;
+  --color-conecta-light: #70D1FF;
+
+  /* 2. Definimos ela como a fonte padrão "sans" do projeto */
+  --font-family-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+
+}
+
+/* TRUQUE DA VERSÃO 4:
+  Isso diz ao Tailwind: "Ative o modo dark sempre que a classe .dark 
+  estiver no elemento HTML ou BODY" 
+*/
+@variant dark (&:where(.dark, .dark *));
+
+/* Configuração Global de Cores */
+@layer base {
+  body {
+    /* Cores padrão (Modo Claro) */
+    background-color: #f8fafc; /* Slate-50 */
+    color: #0f172a;           /* Slate-900 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Quando o modo dark estiver ativo, o body muda sozinho */
+  .dark body {
+    background-color: #020617; /* Slate-950 (Fundo bem escuro) */
+    color: #f8fafc;            /* Texto claro */
+  }
+}
