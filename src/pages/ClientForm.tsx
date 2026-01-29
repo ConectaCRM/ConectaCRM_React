@@ -11,7 +11,7 @@ type ClienteApi = {
   id: number;
   nome: string;
   dataCadastro: string; // ISO
-  valor: string; // backend retorna como string, ex: "5000.00"
+  valor: number; // backend retorna como string, ex: "5000.00"
   ativo: boolean;
   usuario: { id: number };
   categoria: { id: number };
@@ -20,7 +20,7 @@ type ClienteApi = {
 // Estado do formulário na UI
 type ClienteFormState = {
   nome: string;
-  valor: string;
+  valor: number;
   ativo: boolean;
   dataCadastro: string; // pode vir vazio e a gente gera
   usuarioId: string; // guardamos como string para input
@@ -29,7 +29,7 @@ type ClienteFormState = {
 
 const estadoInicial: ClienteFormState = {
   nome: "",
-  valor: "0.00",
+  valor: 0,
   ativo: true,
   dataCadastro: "",
   usuarioId: "1",
@@ -72,18 +72,38 @@ export default function ClientForm() {
 
     const usuarioIdNum = Number(form.usuarioId);
     const categoriaIdNum = Number(form.categoriaId);
+    const valorNum = Number(form.valor); //Por alguma razão ele puxa o valor do form como string, aqui forcei pra ser number
 
-    const base = {
+    if (id !== null){
+      const base = {
+      id: id,
       nome: form.nome.trim(),
       dataCadastro: dataCadastroFinal,
-      valor: form.valor.trim(), // mantenha "5000.00"
+      valor: valorNum/*form.valor*//*.trim()*/, // mantenha "5000.00"
       ativo: Boolean(form.ativo),
       usuario: { id: usuarioIdNum },
       categoria: { id: categoriaIdNum },
-    };
+      };
+      console.log( base)
+      return base;
+    
+    }
+    else{
+      const base = {
+      nome: form.nome.trim(),
+      dataCadastro: dataCadastroFinal,
+      valor: valorNum/*form.valor*//*.trim()*/, // mantenha "5000.00"
+      ativo: Boolean(form.ativo),
+      usuario: { id: usuarioIdNum },
+      categoria: { id: categoriaIdNum },
+      };
+      console.log( base)
+      return base;
+    }   
 
-    if (id !== null) return { id, ...base };
-    return base;
+    //console.log(id, base)
+    //if (id !== null) return { id, ...base };
+    //return base;
   }
 
   async function carregarCliente(clienteId: number) {
@@ -93,7 +113,7 @@ export default function ClientForm() {
       const setCliente = (data: ClienteApi) => {
         setForm({
           nome: data.nome ?? "",
-          valor: data.valor ?? "0.00",
+          valor: data.valor ?? 0/*"0.00"*/,
           ativo: Boolean(data.ativo),
           dataCadastro: data.dataCadastro ?? "",
           usuarioId: String(data.usuario?.id ?? 1),
@@ -141,7 +161,8 @@ export default function ClientForm() {
       const setResposta = () => {};
 
       if (id !== null) {
-        await atualizar(`${endpoint}/${id}`, payload, setResposta, header);
+        await atualizar(endpoint, payload, setResposta, header);
+        //await atualizar(`${endpoint}/${id}`, payload, setResposta, header);
       } else {
         await cadastrar(endpoint, payload, setResposta, header);
       }
@@ -211,7 +232,7 @@ export default function ClientForm() {
           Ativo
         </label>
 
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium mb-1">
             Data Cadastro (ISO)
           </label>
@@ -222,7 +243,7 @@ export default function ClientForm() {
             className="w-full border rounded px-3 py-2"
             placeholder="Se vazio, eu gero automático"
           />
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-2 gap-4">
           <div>

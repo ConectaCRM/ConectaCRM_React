@@ -20,7 +20,7 @@ type ClienteApi = {
   id: number;
   nome: string;
   dataCadastro?: string;
-  valor?: string;
+  valor?: number;
   ativo?: boolean;
   usuario?: {
     id: number;
