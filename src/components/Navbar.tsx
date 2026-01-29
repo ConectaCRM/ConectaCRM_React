@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Menu } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoLight from '../assets/logo-light.png';
 import logoDark from '../assets/logo-dark.png';
@@ -30,6 +30,8 @@ const Navbar = () => {
           <Link to="/" className="hover:text-conecta-royal transition">Página Inicial</Link>
           <Link to="/produto" className="hover:text-conecta-royal transition">Produtos</Link>
           <Link to="/categorias" className="hover:text-conecta-royal transition">Categorias</Link>
+          <Link to="/clientes" className="hover:text-conecta-royal transition">Clientes</Link>
+
         </div>
 
         <div className="flex items-center gap-4">
